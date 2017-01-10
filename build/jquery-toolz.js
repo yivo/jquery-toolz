@@ -117,6 +117,18 @@
         return (ref1 = this[0]) != null ? ref1.tagName.toLowerCase() : void 0;
       };
     }
+    (function() {
+      var base1;
+      if ($.ff == null) {
+        $.ff = document.querySelector != null ? function(selector) {
+          return $(document.querySelector(selector));
+        } : $;
+      }
+      return (base1 = $.fn).ff != null ? base1.ff : base1.ff = document.querySelector != null ? function(selector) {
+        var ref1;
+        return $((ref1 = this[0]) != null ? ref1.querySelector(selector) : void 0);
+      } : $.fn.find;
+    })();
   });
 
 }).call(this);

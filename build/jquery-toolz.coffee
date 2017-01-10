@@ -97,6 +97,17 @@
   
   $.fn.tag ?= ->
     this[0]?.tagName.toLowerCase()
+  
+  do ->
+    $.ff ?= if document.querySelector?
+      (selector) -> $(document.querySelector(selector))
+    else
+      $
+    
+    $.fn.ff ?= if document.querySelector?
+      (selector) -> $(this[0]?.querySelector(selector))
+    else
+      $.fn.find
   # No global variable export
   return
 )
