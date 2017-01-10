@@ -1,20 +1,20 @@
 {
-  "name": "jquery-tools",
-  "homepage": "https://github.com/yivo/jquery-tools",
-  "authors": [
-    "Yaroslav Konoplov <yaroslav@inbox.com>"
-  ],
+  "name": "jquery-toolz",
   "description": "Extends jQuery with useful functions",
-  "main": "build/jquery-tools.js",
+  "main": "build/jquery-toolz.js",
+  "authors": [
+    "Yaroslav Konoplov <eahome00@gmail.com>"
+  ],
   "license": "MIT",
+  "keywords": [
+    "jquery"
+  ],
+  "homepage": "https://github.com/yivo/jquery-toolz",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests",
-    "coffeespec",
-    "source",
-    "spec"
+    "tests"
   ]
 }
