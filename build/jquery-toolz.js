@@ -12,7 +12,7 @@
       factory(root, document, window, RegExp, root.$);
     }
   })(function(__root__, document, window, RegExp, $) {
-    var base, base1, base2, css, getComputedStyle;
+    var base;
     (function() {
       var maskCache, maskConvert, removeClass, removeClassByMask;
       removeClass = $.fn.removeClass;
@@ -70,28 +70,29 @@
         return elements;
       };
     })();
-    getComputedStyle = window.getComputedStyle;
-    css = getComputedStyle != null ? function(el, style) {
-      return getComputedStyle(el)[style];
-    } : function(el, style) {
-      return $(el).css(style);
-    };
-    if ((base = $.fn).snapshotStyles == null) {
-      base.snapshotStyles = function(styles) {
-        var el, j, k, len, len1, ref1, style;
-        ref1 = this;
-        for (j = 0, len = ref1.length; j < len; j++) {
-          el = ref1[j];
-          for (k = 0, len1 = styles.length; k < len1; k++) {
-            style = styles[k];
-            el.style[style] = css(el, style);
-          }
-        }
-        return this;
+    (function() {
+      var base, base1, css, getComputedStyle;
+      getComputedStyle = window.getComputedStyle;
+      css = getComputedStyle != null ? function(el, style) {
+        return getComputedStyle(el)[style];
+      } : function(el, style) {
+        return $(el).css(style);
       };
-    }
-    if ((base1 = $.fn).releaseSnapshot == null) {
-      base1.releaseSnapshot = function(styles) {
+      if ((base = $.fn).snapshotStyles == null) {
+        base.snapshotStyles = function(styles) {
+          var el, j, k, len, len1, ref1, style;
+          ref1 = this;
+          for (j = 0, len = ref1.length; j < len; j++) {
+            el = ref1[j];
+            for (k = 0, len1 = styles.length; k < len1; k++) {
+              style = styles[k];
+              el.style[style] = css(el, style);
+            }
+          }
+          return this;
+        };
+      }
+      return (base1 = $.fn).releaseSnapshot != null ? base1.releaseSnapshot : base1.releaseSnapshot = function(styles) {
         var el, j, k, len, len1, ref1, style;
         ref1 = this;
         for (j = 0, len = ref1.length; j < len; j++) {
@@ -104,14 +105,14 @@
         }
         return this;
       };
-    }
+    })();
     if ($.prefix == null) {
       $.prefix = function(property) {
         return ["-moz-" + property, "-o-" + property, "-ms-" + property, "-webkit-" + property, property];
       };
     }
-    if ((base2 = $.fn).tag == null) {
-      base2.tag = function() {
+    if ((base = $.fn).tag == null) {
+      base.tag = function() {
         var ref1;
         return (ref1 = this[0]) != null ? ref1.tagName.toLowerCase() : void 0;
       };
