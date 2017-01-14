@@ -1,9 +1,10 @@
 gulp       = require 'gulp'
 concat     = require 'gulp-concat'
 coffee     = require 'gulp-coffee'
-iife       = require 'gulp-iife-wrap'
+umd        = require 'gulp-umd-wrap'
 plumber    = require 'gulp-plumber'
 preprocess = require 'gulp-preprocess'
+fs         = require 'fs'
 
 gulp.task 'default', ['build', 'watch'], ->
 
@@ -12,10 +13,11 @@ gulp.task 'build', ->
                   {global: 'window',   native:  true},
                   {global: 'RegExp',   native:  true},
                   {global: '$',        require: 'jquery'}]
+  header = fs.readFileSync('source/__license__.coffee')
   gulp.src('source/__manifest__.coffee')
     .pipe plumber()
     .pipe preprocess()
-    .pipe iife({dependencies})
+    .pipe umd({dependencies, header})
     .pipe concat('jquery-toolz.coffee')
     .pipe gulp.dest('build')
     .pipe coffee()

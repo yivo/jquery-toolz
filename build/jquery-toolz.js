@@ -1,15 +1,20 @@
+
+/*!
+ * jquery-toolz 1.0.3 | https://github.com/yivo/jquery-toolz | MIT License
+ */
+
 (function() {
   (function(factory) {
-    var root;
-    root = typeof self === 'object' && self !== null && self.self === self ? self : typeof global === 'object' && global !== null && global.global === global ? global : void 0;
+    var __root__;
+    __root__ = typeof self === 'object' && self !== null && self.self === self ? self : typeof global === 'object' && global !== null && global.global === global ? global : Function('return this')();
     if (typeof define === 'function' && typeof define.amd === 'object' && define.amd !== null) {
-      define(['jquery', 'exports'], function($) {
-        return factory(root, document, window, RegExp, $);
+      define(['jquery'], function($) {
+        return factory(__root__, document, window, RegExp, $);
       });
     } else if (typeof module === 'object' && module !== null && typeof module.exports === 'object' && module.exports !== null) {
-      factory(root, document, window, RegExp, require('jquery'));
+      factory(__root__, document, window, RegExp, require('jquery'));
     } else {
-      factory(root, document, window, RegExp, root.$);
+      factory(__root__, document, window, RegExp, $);
     }
   })(function(__root__, document, window, RegExp, $) {
     var base;

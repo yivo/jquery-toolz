@@ -1,26 +1,33 @@
+###!
+# jquery-toolz 1.0.3 | https://github.com/yivo/jquery-toolz | MIT License  
+###
+
 ((factory) ->
 
-  # Browser and WebWorker
-  root = if typeof self is 'object' and self isnt null and self.self is self
-    self
+  __root__ = 
+    # The root object for Browser or Web Worker
+    if typeof self is 'object' and self isnt null and self.self is self
+      self
 
-  # Server
-  else if typeof global is 'object' and global isnt null and global.global is global
-    global
+    # The root object for Server-side JavaScript Runtime
+    else if typeof global is 'object' and global isnt null and global.global is global
+      global
 
-  # AMD
+    else
+      Function('return this')()
+
+  # Asynchronous Module Definition (AMD)
   if typeof define is 'function' and typeof define.amd is 'object' and define.amd isnt null
-    define ['jquery', 'exports'], ($) ->
-      factory(root, document, window, RegExp, $)
+    define ['jquery'], ($) ->
+      factory(__root__, document, window, RegExp, $)
 
-  # CommonJS
-  else if typeof module is 'object' and module isnt null and
-          typeof module.exports is 'object' and module.exports isnt null
-    factory(root, document, window, RegExp, require('jquery'))
+  # Server-side JavaScript Runtime compatible with CommonJS Module Spec
+  else if typeof module is 'object' and module isnt null and typeof module.exports is 'object' and module.exports isnt null
+    factory(__root__, document, window, RegExp, require('jquery'))
 
-  # Browser and the rest
+  # Browser, Web Worker and the rest
   else
-    factory(root, document, window, RegExp, root.$)
+    factory(__root__, document, window, RegExp, $)
 
   # No return value
   return
@@ -108,6 +115,6 @@
       (selector) -> $(this[0]?.querySelector(selector))
     else
       $.fn.find
-  # No global variable export
+  # Nothing exported
   return
 )

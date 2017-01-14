@@ -1,6 +1,6 @@
 {
   "name": "jquery-toolz",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extends jQuery with useful functions",
   "main": "build/jquery-toolz.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "gulp": "^3.9.1",
     "gulp-coffee": "^2.3.3",
     "gulp-concat": "^2.6.1",
-    "gulp-iife-wrap": "^1.0.5",
+    "gulp-umd-wrap": "^1.0.7",
     "gulp-plumber": "^1.1.0",
     "gulp-preprocess": "^2.0.0",
     "preprocess": "^3.1.0"
