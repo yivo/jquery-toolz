@@ -1,5 +1,7 @@
 # jquery-toolz
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yivo/jquery-toolz.svg)](https://greenkeeper.io/)
+
 [![Bower](https://img.shields.io/bower/v/jquery-toolz.svg)](https://github.com/yivo/jquery-toolz)
 [![npm](https://img.shields.io/npm/v/jquery-toolz.svg)](https://www.npmjs.com/package/jquery-toolz)
 [![License](https://img.shields.io/github/license/yivo/jquery-toolz.svg)](https://github.com/yivo/jquery-toolz)
