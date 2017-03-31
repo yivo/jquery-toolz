@@ -1,5 +1,5 @@
 ###!
-# jquery-toolz 1.0.3 | https://github.com/yivo/jquery-toolz | MIT License  
+# jquery-toolz 1.0.4 | https://github.com/yivo/jquery-toolz | MIT License
 ###
 
 ((factory) ->
@@ -115,6 +115,30 @@
       (selector) -> $(this[0]?.querySelector(selector))
     else
       $.fn.find
+  
+  $.fn.truth = (attribute) ->
+    @attr(attribute) not in [false, 'false']
+  
+  $.fn.hasAttr = (attribute) ->
+    !!this[0]?.hasAttribute(attribute)
+  
+  $.postJSON = (url, data, options) ->
+    $.ajax url, $.extend options ? {},
+      data:        JSON.stringify(data ? {})
+      contentType: 'application/json'
+      type:        'POST'
+  
+  $.putJSON = (url, data, options) ->
+    $.ajax url, $.extend options ? {},
+      data:        JSON.stringify(data ? {})
+      contentType: 'application/json'
+      type:        'PUT'
+  
+  $.deleteJSON = (url, data, options) ->
+    $.ajax url, $.extend options ? {},
+      data:        JSON.stringify(data ? {})
+      contentType: 'application/json'
+      type:        'DELETE'
   # Nothing exported
   return
 )

@@ -1,6 +1,6 @@
 
 /*!
- * jquery-toolz 1.0.3 | https://github.com/yivo/jquery-toolz | MIT License
+ * jquery-toolz 1.0.4 | https://github.com/yivo/jquery-toolz | MIT License
  */
 
 (function() {
@@ -134,6 +134,35 @@
         return $((ref1 = this[0]) != null ? ref1.querySelector(selector) : void 0);
       } : $.fn.find;
     })();
+    $.fn.truth = function(attribute) {
+      var ref1;
+      return (ref1 = this.attr(attribute)) !== false && ref1 !== 'false';
+    };
+    $.fn.hasAttr = function(attribute) {
+      var ref1;
+      return !!((ref1 = this[0]) != null ? ref1.hasAttribute(attribute) : void 0);
+    };
+    $.postJSON = function(url, data, options) {
+      return $.ajax(url, $.extend(options != null ? options : {}, {
+        data: JSON.stringify(data != null ? data : {}),
+        contentType: 'application/json',
+        type: 'POST'
+      }));
+    };
+    $.putJSON = function(url, data, options) {
+      return $.ajax(url, $.extend(options != null ? options : {}, {
+        data: JSON.stringify(data != null ? data : {}),
+        contentType: 'application/json',
+        type: 'PUT'
+      }));
+    };
+    $.deleteJSON = function(url, data, options) {
+      return $.ajax(url, $.extend(options != null ? options : {}, {
+        data: JSON.stringify(data != null ? data : {}),
+        contentType: 'application/json',
+        type: 'DELETE'
+      }));
+    };
   });
 
 }).call(this);
