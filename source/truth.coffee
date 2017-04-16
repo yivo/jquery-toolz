@@ -1,2 +1,2 @@
 $.fn.truth = (attribute) ->
-  @attr(attribute) not in [false, 'false']
+  (value = @attr(attribute))? and value not in [false, 'false']

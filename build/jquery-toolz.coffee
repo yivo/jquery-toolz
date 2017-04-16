@@ -1,5 +1,5 @@
 ###!
-# jquery-toolz 1.0.4 | https://github.com/yivo/jquery-toolz | MIT License
+# jquery-toolz 1.0.5 | https://github.com/yivo/jquery-toolz | MIT License
 ###
 
 ((factory) ->
@@ -117,7 +117,7 @@
       $.fn.find
   
   $.fn.truth = (attribute) ->
-    @attr(attribute) not in [false, 'false']
+    (value = @attr(attribute))? and value not in [false, 'false']
   
   $.fn.hasAttr = (attribute) ->
     !!this[0]?.hasAttribute(attribute)

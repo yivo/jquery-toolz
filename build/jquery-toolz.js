@@ -1,6 +1,6 @@
 
 /*!
- * jquery-toolz 1.0.4 | https://github.com/yivo/jquery-toolz | MIT License
+ * jquery-toolz 1.0.5 | https://github.com/yivo/jquery-toolz | MIT License
  */
 
 (function() {
@@ -135,8 +135,8 @@
       } : $.fn.find;
     })();
     $.fn.truth = function(attribute) {
-      var ref1;
-      return (ref1 = this.attr(attribute)) !== false && ref1 !== 'false';
+      var value;
+      return ((value = this.attr(attribute)) != null) && (value !== false && value !== 'false');
     };
     $.fn.hasAttr = function(attribute) {
       var ref1;
