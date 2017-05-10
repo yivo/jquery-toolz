@@ -1,6 +1,6 @@
 {
   "name": "jquery-toolz",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Extends jQuery with useful functions",
   "main": "build/jquery-toolz.js",
   "scripts": {
