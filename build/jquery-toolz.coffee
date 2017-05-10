@@ -1,5 +1,5 @@
 ###!
-# jquery-toolz 1.0.7 | https://github.com/yivo/jquery-toolz | MIT License
+# jquery-toolz 1.0.8 | https://github.com/yivo/jquery-toolz | MIT License
 ###
 
 ((factory) ->
@@ -101,8 +101,15 @@
       (elements, mask) ->
         re = maskConvert(mask)
         for el in elements
-          for attr in el.attributes when re.test(attr.name)
-            el.removeAttribute(attr.name)
+          attrs = el.attributes
+          l     = el.attributes.length
+          i     = -1
+          while ++i < l
+            attr = attrs[i]
+            if re.test(attr.name)
+              --l
+              --i
+              el.removeAttribute(attr.name)
         elements
   
   do ->

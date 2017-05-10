@@ -1,6 +1,6 @@
 
 /*!
- * jquery-toolz 1.0.7 | https://github.com/yivo/jquery-toolz | MIT License
+ * jquery-toolz 1.0.8 | https://github.com/yivo/jquery-toolz | MIT License
  */
 
 (function() {
@@ -97,14 +97,18 @@
         }
       };
       return removeAttrByMask = function(elements, mask) {
-        var attr, el, j, k, len, len1, re, ref1;
+        var attr, attrs, el, i, j, l, len, re;
         re = maskConvert(mask);
         for (j = 0, len = elements.length; j < len; j++) {
           el = elements[j];
-          ref1 = el.attributes;
-          for (k = 0, len1 = ref1.length; k < len1; k++) {
-            attr = ref1[k];
+          attrs = el.attributes;
+          l = el.attributes.length;
+          i = -1;
+          while (++i < l) {
+            attr = attrs[i];
             if (re.test(attr.name)) {
+              --l;
+              --i;
               el.removeAttribute(attr.name);
             }
           }
