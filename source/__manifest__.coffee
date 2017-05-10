@@ -1,4 +1,5 @@
 # @include removeClassByMask.coffee
+# @include removeAttrByMask.coffee
 # @include snapshotStyles.coffee
 # @include vendorPrefix.coffee
 # @include tagName.coffee

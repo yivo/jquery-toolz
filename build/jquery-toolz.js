@@ -1,6 +1,6 @@
 
 /*!
- * jquery-toolz 1.0.6 | https://github.com/yivo/jquery-toolz | MIT License
+ * jquery-toolz 1.0.7 | https://github.com/yivo/jquery-toolz | MIT License
  */
 
 (function() {
@@ -71,6 +71,43 @@
             }
           }
           el.className = newlist.join(' ');
+        }
+        return elements;
+      };
+    })();
+    (function() {
+      var maskCache, maskConvert, removeAttr, removeAttrByMask;
+      removeAttr = $.fn.removeAttr;
+      maskCache = {};
+      maskConvert = function(mask) {
+        if (mask instanceof RegExp) {
+          return mask;
+        }
+        return maskCache[mask] != null ? maskCache[mask] : maskCache[mask] = new RegExp(mask.replace(/\*/g, '\\S+'));
+      };
+      $.fn.removeAttr = function(arg) {
+        if (arguments.length > 0) {
+          if (arg !== null && typeof arg === 'object' && (arg.matching != null)) {
+            return removeAttrByMask(this, arg.matching);
+          } else {
+            return removeAttr.call(this, arg);
+          }
+        } else {
+          return removeAttr.call(this);
+        }
+      };
+      return removeAttrByMask = function(elements, mask) {
+        var attr, el, j, k, len, len1, re, ref1;
+        re = maskConvert(mask);
+        for (j = 0, len = elements.length; j < len; j++) {
+          el = elements[j];
+          ref1 = el.attributes;
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            attr = ref1[k];
+            if (re.test(attr.name)) {
+              el.removeAttribute(attr.name);
+            }
+          }
         }
         return elements;
       };

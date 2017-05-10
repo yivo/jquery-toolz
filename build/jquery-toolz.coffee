@@ -1,5 +1,5 @@
 ###!
-# jquery-toolz 1.0.6 | https://github.com/yivo/jquery-toolz | MIT License
+# jquery-toolz 1.0.7 | https://github.com/yivo/jquery-toolz | MIT License
 ###
 
 ((factory) ->
@@ -77,6 +77,33 @@
               newlist.push(cls)
             el.className = newlist.join(' ')
           elements
+  
+  # Usage: 
+  #   * $el.removeAttr(matching: 'example-*')
+  #   * $el.removeAttr(matching: /something/)
+  do ->
+    removeAttr  = $.fn.removeAttr
+    maskCache   = {}
+    maskConvert = (mask) ->
+      return mask if mask instanceof RegExp
+      maskCache[mask] ?= new RegExp(mask.replace(/\*/g, '\\S+'))
+      
+    $.fn.removeAttr = (arg) ->
+      if arguments.length > 0
+        if arg isnt null and typeof arg is 'object' and arg.matching?
+          removeAttrByMask(this, arg.matching)
+        else
+          removeAttr.call(this, arg)
+      else
+        removeAttr.call(this)
+          
+    removeAttrByMask =
+      (elements, mask) ->
+        re = maskConvert(mask)
+        for el in elements
+          for attr in el.attributes when re.test(attr.name)
+            el.removeAttribute(attr.name)
+        elements
   
   do ->
     {getComputedStyle} = window
